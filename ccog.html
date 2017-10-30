@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title> ComboBox Test </title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" type="css" href="mentorTool.css" />
+		<link rel="stylesheet" type="css" href="combo.css" />
+		<script>
+		$(function() {
+				function fetchDepartments() {
+					$.getJSON("http://localhost/mentors/outcomes.php", function(data) {
+						data.forEach(function(x) {
+							$("#list").append("<h3>" + x.subjectCode + " " + x.courseNumber + "</h3><div>" + x.outcome + "</div>\n");
+						});
+					});
+				}
+				
+				fetchDepartments();
+		});
+		</script>
+	</head> 
+	<body> 
+		<div id="list"></div>
+	</body> 
+</html>
