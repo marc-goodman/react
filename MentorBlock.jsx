@@ -1,11 +1,8 @@
 import React from 'react';
 
-// import MentorBlock from './MentorBlock';
-
-export class MentorBlock extends React.Component {
+export default class MentorBlock extends React.Component {
     render() {
         var mentor = this.props.mentor;
-        var mentorIds = this.props.mentorIds;
 
         return (<div style={{width: 120 + "px"}} className="wp-caption alignleft">
             <img className="" src={mentor.imageUrl} alt={mentor.firstName + ' ' + mentor.lastName} width="110"

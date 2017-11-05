@@ -1,5 +1,5 @@
-import { MentorList } from './MentorList.jsx';
-import { DepartmentList } from './DepartmentList.jsx';
+import MentorList from './MentorList.jsx';
+import DepartmentList from './DepartmentList.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -33,8 +33,7 @@ $(
                 ReactDOM.render(
                     <div>
                         <h3>Your Mentors</h3>
-                        <MentorList mentors={mentorList.filter((mentor) => targetMentorIds.indexOf(mentor.id) > -1)}
-                                    mentorIds={mentorIds}/>
+                        <MentorList mentors={mentorList.filter((mentor) => targetMentorIds.indexOf(mentor.id) > -1)}/>
                         <br style={{ clear: "both" }} />
                     </div>, document.getElementById('your_mentor')
                 );
@@ -44,11 +43,10 @@ $(
         function render() {
             if (departments && mentorList && mentorIds) {
                 ReactDOM.render(
-                    <MentorList mentors={mentorList}
-                                mentorIds={mentorIds}/>, document.getElementById('meet_the_mentors'));
+                    <MentorList mentors={mentorList}/>, document.getElementById('meet_the_mentors'));
                 ReactDOM.render(
                     <DepartmentList
-                        departments={departments}/>, document.getElementById('department_table'));
+                        departments={departments} mentorIds={mentorIds}/>, document.getElementById('department_table'));
             }
         }
 
@@ -59,6 +57,7 @@ $(
             }));
             render();
         });
+        
         $.getJSON("http://localhost/CIS233W/mentors/mentors.php", (data) => {
             mentorList = data;
             mentorIds = new Object();

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DepartmentBlock } from './DepartmentBlock.jsx';
+import DepartmentBlock from './DepartmentBlock.jsx';
 
 class DepartmentListHeader extends React.Component {
     render() {
@@ -15,16 +15,17 @@ class DepartmentListHeader extends React.Component {
     }
 }
 
-export class DepartmentList extends React.Component {
+export default class DepartmentList extends React.Component {
     render() {
-        const departments = this.props.departments.map((department) => <DepartmentBlock key={department.dept}
-                                                                                        department={department}/>);
+        var { departments, mentorIds } = this.props;
+        
+        const depts = departments.map((department) => <DepartmentBlock key={department.dept} department={department} mentorIds={mentorIds}/>);
         //const mentors = props.mentors.map((mentor) => <div key={mentor.directory} mentor={mentor}>{mentor.directory}</div>);
         return (
             <table>
                 <DepartmentListHeader/>
                 <tbody>
-                {departments}
+                {depts}
                 </tbody>
             </table>
         );
